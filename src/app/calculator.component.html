@@ -1,0 +1,49 @@
+<div id="title">
+  <h1>Welcome to TSAC</h1>
+  <h2>(The Super Amazing Calculator)</h2>
+</div>
+
+<div class="calculator">
+  <input #numero1 type="text" [(ngModel)]="num1" placeholder="Input number 1" required>
+  <p class="alert" *ngIf="num1 === undefined">*Required input</p>
+  <input #numero2 type="text" [(ngModel)]="num2" placeholder="Input number 2" required>
+  <p class="alert" *ngIf="num2 === undefined">*Required input</p>
+
+  <div class="buttons">
+    <button (click)="sum()">+</button>
+    <button (click)="subs()">-</button>
+    <button (click)="multi()">*</button>
+    <button (click)="div()">/</button>
+  </div>
+
+  <div class="result" *ngIf="res != 0">
+    <span>Result:</span> {{res}}
+  </div>
+
+  <table class="history" *ngIf="history.length > 0">
+    <caption class="titleHistory">Operations history</caption>
+    <thead>
+      <tr>
+        <th>Operation</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let operation of history">
+        <td>{{operation.num1}} {{operation.operator}} {{operation.num2}}</td>
+        <td>{{operation.res}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button (click)="clearHistory()" class="clrHistory">Clear history</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="clearInputs(numero1, numero2)" class="clrInputs">Clear fields</button>
+</div>
+
+<div id="footer">
+  <h3>Created by <a href="https://github.com/JaiderCortes" target="_blank">Jaider Cortes</a> with Angular and 💖</h3>
+</div>
